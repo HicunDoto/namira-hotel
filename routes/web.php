@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\adminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [dashboardController::class, 'index']);
+
+Route::get('/adminnamira', [adminController::class, 'index']);
+Route::get('/adminnamira/promo', [adminController::class, 'promo']);
+Route::get('/adminnamira/createPromo', [adminController::class, 'createPromo']);
+Route::post('/adminnamira/createPromo', [adminController::class, 'storePromo']);
