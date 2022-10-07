@@ -45,6 +45,12 @@ class adminController extends Controller
         return view('adminNamira.promo');
     }
 
+    public function editPromo(Request $request)
+    {
+        $promo = promoDashboard::find($request->ID);
+        return view('adminNamira.promo',['promos' => $promo]);
+    }
+
     public function storePromo(Request $request)
     {
         $promo = promoDashboard::find($request->ID);
