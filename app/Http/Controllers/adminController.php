@@ -79,31 +79,26 @@ class adminController extends Controller
 
     public function editStorePromo(Request $request,$id)
     {
-                $request->validate([
-                    'file' => 'required|mimes:jpg,jpeg,png|max:2048'
-                    ]);
-                    // var_dump($fotoku);die;
-                    
-                $getFotoPromo = promoDashboard::find($id);
-                $fotoKu = '';
-                if($request->file() != null){
-                    $fileName = date('d-m-Y').'_'.$request->file->getClientOriginalName();
-                    $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
-                    $fotoku = $filePath;
-                }else{
-                    $fotoku = $getFotoPromo->fotoPromo; 
-                }
-                // die;
-                // var_dump($fotoku);die;
-                $promo = promoDashboard::where('id',$id)->update([
-                    'namaPromo' => $request->namaPromo,
-                    'judulPromo' => $request->judulPromo,
-                    'keteranganPromo' => $request->keteranganPromo,
-                    'fotoPromo' => $fotoku
+        $getFotoPromo = promoDashboard::find($id);
+        $fotoKu = '';
+        if($request->file() != null){
+            $request->validate([
+                'file' => 'required|mimes:jpg,jpeg,png|max:2048'
                 ]);
-                // var_dump($promo);die;
-                return redirect('/adminnamira/promo')
-                ->with('success','Data telah di update');
+            $fileName = date('d-m-Y').'_'.$request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
+            $fotoku = $filePath;
+        }else{
+            $fotoku = $getFotoPromo->fotoPromo; 
+        }
+        $promo = promoDashboard::where('id',$id)->update([
+            'namaPromo' => $request->namaPromo,
+            'judulPromo' => $request->judulPromo,
+            'keteranganPromo' => $request->keteranganPromo,
+            'fotoPromo' => $fotoku
+        ]);
+        return redirect('/adminnamira/promo')
+        ->with('success','Data telah di update');
     }
 
     public function deletePromo(Request $request,$id)
