@@ -2,7 +2,7 @@
     <div id="promo">
         <h3>PROMO</h3>
         @foreach ($promos as $promo)
-            Hello, {{ $promo->namaPromo }} - {{ $promo->judulPromo }} - {{ $promo->keteranganPromo }} - {{ $promo->fotoPromo }} <br />
+            Hello, {{ $promo->namaPromo }} - {{ $promo->judulPromo }} - {{ $promo->keteranganPromo }} - <img src="{{ asset('storage/'.$promo->fotoPromo) }}" width="50" height="50" alt=""> <br />
         @endforeach
     </div>
     <div id="article">

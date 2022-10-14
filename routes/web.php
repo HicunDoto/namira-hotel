@@ -19,6 +19,8 @@ Route::get('/', [dashboardController::class, 'index']);
 
 Route::get('/adminnamira', [adminController::class, 'index']);
 Route::get('/adminnamira/promo', [adminController::class, 'promo']);
-Route::post('/adminnamira/createPromo', [adminController::class, 'createPromo']);
+Route::get('/adminnamira/createPromo', [adminController::class, 'createPromo']);
+Route::post('/adminnamira/promo', [adminController::class, 'createStorePromo']);
+Route::post('/adminnamira/promo/{id}', [adminController::class, 'deletePromo']);
 Route::get('/adminnamira/{id}/editPromo', [adminController::class, 'editPromo']);
-Route::put('/adminnamira/{id}', [adminController::class, 'storePromo']);
+Route::put('/adminnamira/{id}', [adminController::class, 'editStorePromo'])->name('update.promo');

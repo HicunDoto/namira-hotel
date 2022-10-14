@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 require '../vendor/autoload.php';
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\promoDashboard;
 use App\Models\articleDashboard;
 use App\Models\contactDashboard;
@@ -17,9 +18,9 @@ class adminController extends Controller
      */
     public function index()
     {
-        $promo = promoDashboard::get();
-        $article = articleDashboard::get();
-        $contact = contactDashboard::get();
+        $promo = promoDashboard::all()->where('deleteStatus=0');
+        $article = articleDashboard::all();
+        $contact = contactDashboard::all();
         return view('adminNamira.index',['promos' => $promo, 'articles' => $article, 'contacts' => $contact]);
     }
 
@@ -30,36 +31,89 @@ class adminController extends Controller
      */
     public function promo()
     {
-        $promo = promoDashboard::get();
+        $promo = promoDashboard::where('deleteStatus','=','0')->get();
         return view('adminNamira.promo',['promos' => $promo]);
     }
-
+    static function createFolder($pathname='')
+    {
+        if (!empty($pathname)) {
+            if (!is_dir($pathname)) {
+                mkdir($pathname, 0755, TRUE);
+            }
+        }
+    }
     public function createPromo(Request $request)
     {
-        $promo = new promoDashboard;
-        $promo->namaPromo = $request->namaPromo;
-        $promo->judulPromo = $request->judulPromo;
-        $promo->keteranganPromo = $request->keteranganPromo;
-        $promo->fotoPromo = $request->fotoPromo;
-        $promo->save();
-        return view('adminNamira.promo');
+        return view('adminNamira.createPromo');
     }
 
-    public function editPromo(Request $request)
+    public function createStorePromo(Request $request)
     {
-        $promo = promoDashboard::find($request->ID);
-        return view('adminNamira.promo',['promos' => $promo]);
+        $request->validate([
+            'file' => 'required|mimes:jpg,jpeg,png|max:2048'
+            ]);
+            $promo = new promoDashboard;
+            if($request != null && $request->file()) {
+                $fileName = date('d-m-Y').'_'.$request->file->getClientOriginalName();
+                $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
+                $promo->namaPromo = $request->namaPromo;
+                $promo->judulPromo = $request->judulPromo;
+                $promo->keteranganPromo = $request->keteranganPromo;
+                $promo->fotoPromo = $filePath;
+                $promo->deleteStatus = 0;
+                $promo->save();
+                return redirect('/adminnamira/promo')
+                ->with('success','File has been uploaded.')
+                ->with('file', $fileName);
+            }else{
+                return view('adminNamira.createPromo')
+                ->with('failed','Cannot Save.');
+            }
     }
 
-    public function storePromo(Request $request)
+    public function editPromo(Request $request,$id)
     {
-        $promo = promoDashboard::find($request->ID);
-        $promo->namaPromo = $request->name;
-        $promo->judulPromo = $request->name;
-        $promo->keteranganPromo = $request->name;
-        $promo->fotoPromo = $request->name;
-        $promo->save();
-        return view('adminNamira.promo');
+        $promo = promoDashboard::find($id);
+        return view('adminNamira.editPromo',['promos' => $promo]);
+    }
+
+    public function editStorePromo(Request $request,$id)
+    {
+                $request->validate([
+                    'file' => 'required|mimes:jpg,jpeg,png|max:2048'
+                    ]);
+                    // var_dump($fotoku);die;
+                    
+                $getFotoPromo = promoDashboard::find($id);
+                $fotoKu = '';
+                if($request->file() != null){
+                    $fileName = date('d-m-Y').'_'.$request->file->getClientOriginalName();
+                    $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
+                    $fotoku = $filePath;
+                }else{
+                    $fotoku = $getFotoPromo->fotoPromo; 
+                }
+                // die;
+                // var_dump($fotoku);die;
+                $promo = promoDashboard::where('id',$id)->update([
+                    'namaPromo' => $request->namaPromo,
+                    'judulPromo' => $request->judulPromo,
+                    'keteranganPromo' => $request->keteranganPromo,
+                    'fotoPromo' => $fotoku
+                ]);
+                // var_dump($promo);die;
+                return redirect('/adminnamira/promo')
+                ->with('success','Data telah di update');
+    }
+
+    public function deletePromo(Request $request,$id)
+    {
+        // var_dump($id);die;
+        $promo = promoDashboard::where('id',$id)->update([
+            'deleteStatus' => 1,
+        ]);
+        // var_dump($promo);die;
+        return redirect('/adminNamira.promo')->with('status', 'Data berhasil dihapus!');
     }
 
     /**

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('judulPromo');
             $table->text('keteranganPromo');
             $table->string('fotoPromo');
+            $table->integer('deleteStatus');
             $table->timestamps();
         });
     }
