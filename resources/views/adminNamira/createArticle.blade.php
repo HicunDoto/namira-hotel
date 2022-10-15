@@ -12,17 +12,17 @@
         <strong>{{ $message }}</strong>
     </div>
     @endif
-    <form action="{{url('/adminnamira/promo')}}" method="post" enctype="multipart/form-data">
+    <form action="{{url('/adminnamira/article')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div>
             <div style="padding-bottom: 5px;">
-                <input type="text" placeholder="Nama" name="namaPromo">
+                <input type="date" placeholder="Tanggal" name="tglTerbit">
             </div>
             <div style="padding-bottom: 5px;">
-                <input type="text" placeholder="Judul" name="judulPromo">
+                <input type="text" placeholder="Judul" name="judulArticle">
             </div>
             <div style="padding-bottom: 5px;">
-                <input type="text" placeholder="Keterangan" name="keteranganPromo">
+                <input type="text" placeholder="Keterangan" name="keteranganArticle">
             </div>
             <div style="padding-bottom: 5px;">
                 <label for="fotoku">Upload Foto</label><br><input id="fotoku" type="file" name="file">   

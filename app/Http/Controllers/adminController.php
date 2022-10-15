@@ -85,7 +85,7 @@ class adminController extends Controller
             $request->validate([
                 'file' => 'required|mimes:jpg,jpeg,png|max:2048'
                 ]);
-            $fileName = date('d-m-Y').'_'.$request->file->getClientOriginalName();
+            $fileName = 'promo_'.date('d-m-Y').'_'.$request->file->getClientOriginalName();
             $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
             $fotoku = $filePath;
         }else{
@@ -135,16 +135,16 @@ class adminController extends Controller
         $request->validate([
             'file' => 'required|mimes:jpg,jpeg,png|max:2048'
             ]);
-            $promo = new promoDashboard;
+            $article = new articleDashboard;
             if($request != null && $request->file()) {
-                $fileName = 'promo_'.date('d-m-Y').'_'.$request->file->getClientOriginalName();
+                $fileName = 'article_'.date('d-m-Y').'_'.$request->file->getClientOriginalName();
                 $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
-                $promo->namaPromo = $request->namaPromo;
-                $promo->judulPromo = $request->judulPromo;
-                $promo->keteranganPromo = $request->keteranganPromo;
-                $promo->fotoPromo = $filePath;
-                $promo->deleteStatus = 0;
-                $promo->save();
+                $article->namaPromo = $request->namaPromo;
+                $article->judulPromo = $request->judulPromo;
+                $article->keteranganPromo = $request->keteranganPromo;
+                $article->fotoPromo = $filePath;
+                $article->deleteStatus = 0;
+                $article->save();
                 return redirect('/adminnamira/article')
                 ->with('success','Data berhasil tersimpan')
                 ->with('file', $fileName);
@@ -168,7 +168,7 @@ class adminController extends Controller
             $request->validate([
                 'file' => 'required|mimes:jpg,jpeg,png|max:2048'
                 ]);
-            $fileName = date('d-m-Y').'_'.$request->file->getClientOriginalName();
+            $fileName = 'article_'.date('d-m-Y').'_'.$request->file->getClientOriginalName();
             $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
             $fotoku = $filePath;
         }else{
