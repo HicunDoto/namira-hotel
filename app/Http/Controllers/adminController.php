@@ -150,7 +150,7 @@ class adminController extends Controller
                 ->with('file', $fileName);
             }else{
                 return view('adminNamira.createArticle')
-                ->with('failed','Data berhasil tersimpan');
+                ->with('failed','Data tidak berhasil tersimpan');
             }
     }
 
