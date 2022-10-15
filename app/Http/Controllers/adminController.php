@@ -114,8 +114,8 @@ class adminController extends Controller
     
     public function article()
     {
-        $promo = promoDashboard::where('deleteStatus','=','0')->get();
-        return view('adminNamira.article',['promos' => $promo]);
+        $article = articleDashboard::where('deleteStatus','=','0')->get();
+        return view('adminNamira.article',['articles' => $article]);
     }
     // static function createFolder($pathname='')
     // {
