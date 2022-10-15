@@ -18,8 +18,8 @@ class dashboardController extends Controller
      */
     public function index()
     {
-        $promo = promoDashboard::get();
-        $article = articleDashboard::get();
+        $promo = promoDashboard::where('deleteStatus','0')->get();
+        $article = articleDashboard::where('deleteStatus','0')->get();
         $contact = contactDashboard::get();
         return view('index',['promos' => $promo, 'articles' => $article, 'contacts' => $contact]);
     }
