@@ -139,10 +139,10 @@ class adminController extends Controller
             if($request != null && $request->file()) {
                 $fileName = 'article_'.date('d-m-Y').'_'.$request->file->getClientOriginalName();
                 $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
-                $article->namaPromo = $request->namaPromo;
-                $article->judulPromo = $request->judulPromo;
-                $article->keteranganPromo = $request->keteranganPromo;
-                $article->fotoPromo = $filePath;
+                $article->tglTerbit = $request->tglTerbit;
+                $article->judulArticle = $request->judulArticle;
+                $article->keterangan = $request->keteranganArticle;
+                $article->fotoArticle = $filePath;
                 $article->deleteStatus = 0;
                 $article->save();
                 return redirect('/adminnamira/article')
