@@ -20,7 +20,7 @@
                 <input type="date" value="{{date('Y-m-d',strtotime($articles->tglTerbit))}}" name="tglTerbit">
             </div>
             <div style="padding-bottom: 5px;">
-                <input type="text" placeholder="Judul" value="{{$articles->judulPromo}}" name="judulArticle">
+                <input type="text" placeholder="Judul" value="{{$articles->judulArticle}}" name="judulArticle">
             </div>
             <div style="padding-bottom: 5px;">
                 <input type="text" placeholder="Keterangan" value="{{$articles->keterangan}}" name="keteranganArticle">

@@ -108,7 +108,7 @@ class adminController extends Controller
             'deleteStatus' => 1,
         ]);
         // var_dump($promo);die;
-        return redirect('/adminNamira.promo')->with('status', 'Data berhasil dihapus!');
+        return redirect('/adminNamira/promo')->with('status', 'Data berhasil dihapus!');
     }
 
     
@@ -172,13 +172,13 @@ class adminController extends Controller
             $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
             $fotoku = $filePath;
         }else{
-            $fotoku = $getFotoArticle->fotoPromo; 
+            $fotoku = $getFotoArticle->fotoArticle; 
         }
-        $promo = promoDashboard::where('id',$id)->update([
-            'namaPromo' => $request->namaPromo,
-            'judulPromo' => $request->judulPromo,
-            'keteranganPromo' => $request->keteranganPromo,
-            'fotoPromo' => $fotoku
+        $article = articleDashboard::where('id',$id)->update([
+            'tglTerbit' => $request->tglTerbit,
+            'judulArticle' => $request->judulArticle,
+            'keterangan' => $request->keteranganArticle,
+            'fotoArticle' => $fotoku
         ]);
         return redirect('/adminnamira/article')
         ->with('success','Data telah di update');
@@ -187,10 +187,10 @@ class adminController extends Controller
     public function deleteArticle(Request $request,$id)
     {
         // var_dump($id);die;
-        $promo = promoDashboard::where('id',$id)->update([
+        $promo = articleDashboard::where('id',$id)->update([
             'deleteStatus' => 1,
         ]);
         // var_dump($promo);die;
-        return redirect('/adminNamira.article')->with('status', 'Data berhasil dihapus!');
+        return redirect('/adminnamira/article')->with('status', 'Data berhasil dihapus!');
     }
 }
