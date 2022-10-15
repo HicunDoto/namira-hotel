@@ -7,13 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    @if ($message = Session::get('failed'))
-    <div class="alert alert-danger">
-        <strong>{{ $message }}</strong>
-    </div>
-    @endif
     <form action="{{url('/adminnamira/article')}}" method="post" enctype="multipart/form-data">
         @csrf
+        @if ($message = Session::get('failed'))
+        <div class="alert alert-danger">
+            <strong>{{ $message }}</strong>
+        </div>
+        @endif
         <div>
             <div style="padding-bottom: 5px;">
                 <input type="date" placeholder="Tanggal" name="tglTerbit">

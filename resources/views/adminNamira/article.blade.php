@@ -16,7 +16,7 @@
     @endif
         <button><a href="createArticle">BUAT PROMO</a></button><br>
         @foreach ($articles as $article)
-            Hello, {{ $article->judulArticle }} - {{ $article->tglTerbit }} - {{ $article->keterangan }} - <img src="{{ asset('storage/'.$article->fotoAticle) }}" width="50" height="50" alt=""> - <a href="/adminnamira/{{$article->id}}/editArticle" name="edit">EDIT</a> - <form action="/adminnamira/article/{{$article->id}}" method="post"> @csrf <button type="submit">Hapus</button></form><br />
+            Hello, {{ $article->judulArticle }} - {{ $article->tglTerbit }} - {{ $article->keterangan }} - <img src="{{ asset('storage/'.$article->fotoArticle) }}" width="50" height="50" alt=""> - <a href="/adminnamira/{{$article->id}}/editArticle" name="edit">EDIT</a> - <form action="/adminnamira/article/{{$article->id}}" method="post"> @csrf <button type="submit">Hapus</button></form><br />
         @endforeach
     </div>
 </body>

@@ -149,20 +149,20 @@ class adminController extends Controller
                 ->with('success','Data berhasil tersimpan')
                 ->with('file', $fileName);
             }else{
-                return view('adminNamira.createArticle')
+                return redirect('/adminnamira/createArticle')
                 ->with('failed','Data tidak berhasil tersimpan');
             }
     }
 
     public function editArticle(Request $request,$id)
     {
-        $promo = promoDashboard::find($id);
-        return view('adminNamira.editArticle',['promos' => $promo]);
+        $article = articleDashboard::find($id);
+        return view('adminNamira.editArticle',['articles' => $article]);
     }
 
     public function editStoreArticle(Request $request,$id)
     {
-        $getFotoPromo = promoDashboard::find($id);
+        $getFotoArticle = articleDashboard::find($id);
         $fotoKu = '';
         if($request->file() != null){
             $request->validate([
@@ -172,7 +172,7 @@ class adminController extends Controller
             $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
             $fotoku = $filePath;
         }else{
-            $fotoku = $getFotoPromo->fotoPromo; 
+            $fotoku = $getFotoArticle->fotoPromo; 
         }
         $promo = promoDashboard::where('id',$id)->update([
             'namaPromo' => $request->namaPromo,

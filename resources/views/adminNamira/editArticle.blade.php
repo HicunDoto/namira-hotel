@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="{{url('/adminnamira')}}/{{$promos->id}}" method="post" enctype="multipart/form-data">
+    <form action="{{url('/adminnamira')}}/{{$articles->id}}" method="post" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         @if ($message = Session::get('failed'))
@@ -17,16 +17,16 @@
         @endif
         <div>
             <div style="padding-bottom: 5px;">
-                <input type="text" placeholder="Nama" value="{{$promos->namaPromo}}" name="namaPromo">
+                <input type="date" value="{{date('Y-m-d',strtotime($articles->tglTerbit))}}" name="tglTerbit">
             </div>
             <div style="padding-bottom: 5px;">
-                <input type="text" placeholder="Judul" value="{{$promos->judulPromo}}" name="judulPromo">
+                <input type="text" placeholder="Judul" value="{{$articles->judulPromo}}" name="judulArticle">
             </div>
             <div style="padding-bottom: 5px;">
-                <input type="text" placeholder="Keterangan" value="{{$promos->keteranganPromo}}" name="keteranganPromo">
+                <input type="text" placeholder="Keterangan" value="{{$articles->keterangan}}" name="keteranganArticle">
             </div>
             <div>
-                <img src="{{ asset('storage/'.$promos->fotoPromo) }}" width="50" height="50" alt="">
+                <img src="{{ asset('storage/'.$articles->fotoArticle) }}" width="50" height="50" alt="">
             </div>
             <div style="padding-bottom: 5px;">
                 <label for="fotoku">Upload Foto</label><br><input id="fotoku" type="file" name="file">   
