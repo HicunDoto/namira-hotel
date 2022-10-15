@@ -8,7 +8,7 @@
     <div id="article">
         <h3>ARTICLE</h3>
         @foreach ($articles as $article)
-            Hello, {{ $article->judulArticle }} - {{ $article->tglTerbit }} - {{ $article->keterangan }} - {{ $article->fotoAticle }} <br />
+            Hello, {{ $article->judulArticle }} - {{date('d-m-Y',strtotime($article->tglTerbit))}} - {{ $article->keterangan }} - <img src="{{ asset('storage/'.$article->fotoArticle) }}" width="50" height="50" alt=""> <br />
         @endforeach
     </div>
     <div id="contact">
