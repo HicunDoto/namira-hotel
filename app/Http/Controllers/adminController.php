@@ -18,9 +18,9 @@ class adminController extends Controller
      */
     public function index()
     {
-        $promo = promoDashboard::all()->where('deleteStatus=0');
-        $article = articleDashboard::all();
-        $contact = contactDashboard::all();
+        $promo = promoDashboard::where('deleteStatus','0')->get();
+        $article = articleDashboard::where('deleteStatus','0')->get();
+        $contact = contactDashboard::get();
         return view('adminNamira.index',['promos' => $promo, 'articles' => $article, 'contacts' => $contact]);
     }
 
@@ -34,14 +34,14 @@ class adminController extends Controller
         $promo = promoDashboard::where('deleteStatus','=','0')->get();
         return view('adminNamira.promo',['promos' => $promo]);
     }
-    static function createFolder($pathname='')
-    {
-        if (!empty($pathname)) {
-            if (!is_dir($pathname)) {
-                mkdir($pathname, 0755, TRUE);
-            }
-        }
-    }
+    // static function createFolder($pathname='')
+    // {
+    //     if (!empty($pathname)) {
+    //         if (!is_dir($pathname)) {
+    //             mkdir($pathname, 0755, TRUE);
+    //         }
+    //     }
+    // }
     public function createPromo(Request $request)
     {
         return view('adminNamira.createPromo');
@@ -54,7 +54,7 @@ class adminController extends Controller
             ]);
             $promo = new promoDashboard;
             if($request != null && $request->file()) {
-                $fileName = date('d-m-Y').'_'.$request->file->getClientOriginalName();
+                $fileName = 'promo_'.date('d-m-Y').'_'.$request->file->getClientOriginalName();
                 $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
                 $promo->namaPromo = $request->namaPromo;
                 $promo->judulPromo = $request->judulPromo;
@@ -63,11 +63,11 @@ class adminController extends Controller
                 $promo->deleteStatus = 0;
                 $promo->save();
                 return redirect('/adminnamira/promo')
-                ->with('success','File has been uploaded.')
+                ->with('success','Data berhasil tersimpan')
                 ->with('file', $fileName);
             }else{
                 return view('adminNamira.createPromo')
-                ->with('failed','Cannot Save.');
+                ->with('failed','Data tidak berhasil tersimpan');
             }
     }
 
@@ -111,59 +111,86 @@ class adminController extends Controller
         return redirect('/adminNamira.promo')->with('status', 'Data berhasil dihapus!');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    
+    public function article()
     {
-        //
+        $promo = promoDashboard::where('deleteStatus','=','0')->get();
+        return view('adminNamira.article',['promos' => $promo]);
+    }
+    // static function createFolder($pathname='')
+    // {
+    //     if (!empty($pathname)) {
+    //         if (!is_dir($pathname)) {
+    //             mkdir($pathname, 0755, TRUE);
+    //         }
+    //     }
+    // }
+    public function createArticle(Request $request)
+    {
+        return view('adminNamira.createArticle');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function createStoreArticle(Request $request)
     {
-        //
+        $request->validate([
+            'file' => 'required|mimes:jpg,jpeg,png|max:2048'
+            ]);
+            $promo = new promoDashboard;
+            if($request != null && $request->file()) {
+                $fileName = 'promo_'.date('d-m-Y').'_'.$request->file->getClientOriginalName();
+                $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
+                $promo->namaPromo = $request->namaPromo;
+                $promo->judulPromo = $request->judulPromo;
+                $promo->keteranganPromo = $request->keteranganPromo;
+                $promo->fotoPromo = $filePath;
+                $promo->deleteStatus = 0;
+                $promo->save();
+                return redirect('/adminnamira/article')
+                ->with('success','Data berhasil tersimpan')
+                ->with('file', $fileName);
+            }else{
+                return view('adminNamira.createArticle')
+                ->with('failed','Cannot Save.');
+            }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function editArticle(Request $request,$id)
     {
-        //
+        $promo = promoDashboard::find($id);
+        return view('adminNamira.editArticle',['promos' => $promo]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function editStoreArticle(Request $request,$id)
     {
-        //
+        $getFotoPromo = promoDashboard::find($id);
+        $fotoKu = '';
+        if($request->file() != null){
+            $request->validate([
+                'file' => 'required|mimes:jpg,jpeg,png|max:2048'
+                ]);
+            $fileName = date('d-m-Y').'_'.$request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('images', $fileName, 'public');
+            $fotoku = $filePath;
+        }else{
+            $fotoku = $getFotoPromo->fotoPromo; 
+        }
+        $promo = promoDashboard::where('id',$id)->update([
+            'namaPromo' => $request->namaPromo,
+            'judulPromo' => $request->judulPromo,
+            'keteranganPromo' => $request->keteranganPromo,
+            'fotoPromo' => $fotoku
+        ]);
+        return redirect('/adminnamira/article')
+        ->with('success','Data telah di update');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function deleteArticle(Request $request,$id)
     {
-        //
+        // var_dump($id);die;
+        $promo = promoDashboard::where('id',$id)->update([
+            'deleteStatus' => 1,
+        ]);
+        // var_dump($promo);die;
+        return redirect('/adminNamira.article')->with('status', 'Data berhasil dihapus!');
     }
 }

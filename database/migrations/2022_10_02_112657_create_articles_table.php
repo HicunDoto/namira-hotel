@@ -19,6 +19,7 @@ return new class extends Migration
             $table->dateTime('tglTerbit');
             $table->text('keterangan');
             $table->string('fotoAticle');
+            $table->integer('deleteStatus');
             $table->timestamps();
         });
     }
