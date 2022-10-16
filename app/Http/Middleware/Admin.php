@@ -28,4 +28,8 @@ class Admin
         //     return redirect('/dashboard'); 
         // }
     }
+    protected function redirectTo($request)
+    {
+        return redirect('/login34N4mira');
+    }
 }
