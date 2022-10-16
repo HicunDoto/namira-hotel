@@ -21,18 +21,20 @@ Route::get('/login34N4mira',[loginController::class,'home'])->name('login');
 Route::post('/login34N4mira',[loginController::class,'authenticate'])->name('post.login');
 Route::get('/logout',[loginController::class,'logout'])->name('logout');
 
-//promo route adminnamira
-Route::get('/adminnamira', [adminController::class, 'index']);
-Route::get('/adminnamira/promo', [adminController::class, 'promo']);
-Route::get('/adminnamira/createPromo', [adminController::class, 'createPromo']);
-Route::post('/adminnamira/promo', [adminController::class, 'createStorePromo']);
-Route::post('/adminnamira/promo/{id}', [adminController::class, 'deletePromo']);
-Route::get('/adminnamira/{id}/editPromo', [adminController::class, 'editPromo']);
-Route::put('/adminnamira/{id}', [adminController::class, 'editStorePromo'])->name('update.Promo');
-//article route adminnamira
-Route::get('/adminnamira/article', [adminController::class, 'article']);
-Route::get('/adminnamira/createArticle', [adminController::class, 'createArticle']);
-Route::post('/adminnamira/article', [adminController::class, 'createStoreArticle']);
-Route::post('/adminnamira/article/{id}', [adminController::class, 'deleteArticle']);
-Route::get('/adminnamira/{id}/editArticle', [adminController::class, 'editArticle']);
-Route::put('/adminnamira/{id}', [adminController::class, 'editStoreArticle'])->name('update.Article');
+Route::group(['middleware'=>['admin']], function(){
+    //promo route adminnamira
+    Route::get('/adminnamira', [adminController::class, 'index']);
+    Route::get('/adminnamira/promo', [adminController::class, 'promo']);
+    Route::get('/adminnamira/createPromo', [adminController::class, 'createPromo']);
+    Route::post('/adminnamira/promo', [adminController::class, 'createStorePromo']);
+    Route::post('/adminnamira/promo/{id}', [adminController::class, 'deletePromo']);
+    Route::get('/adminnamira/{id}/editPromo', [adminController::class, 'editPromo']);
+    Route::put('/adminnamira/{id}', [adminController::class, 'editStorePromo'])->name('update.Promo');
+    //article route adminnamira
+    Route::get('/adminnamira/article', [adminController::class, 'article']);
+    Route::get('/adminnamira/createArticle', [adminController::class, 'createArticle']);
+    Route::post('/adminnamira/article', [adminController::class, 'createStoreArticle']);
+    Route::post('/adminnamira/article/{id}', [adminController::class, 'deleteArticle']);
+    Route::get('/adminnamira/{id}/editArticle', [adminController::class, 'editArticle']);
+    Route::put('/adminnamira/{id}', [adminController::class, 'editStoreArticle'])->name('update.Article');
+});

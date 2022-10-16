@@ -7,7 +7,7 @@
     <title>Login</title>
 </head>
 <body>
-    <form action="{{url('/login34N4mira')}}" method="post" enctype="multipart/form-data">
+    <form action="{{url('/login34N4mira')}}" method="post">
         @csrf
         @if ($message = Session::get('failed'))
         <div class="alert alert-danger">
@@ -16,7 +16,7 @@
         @endif
         <div>
             <div style="padding-bottom: 5px;">
-                <input type="text" placeholder="Username" name="tglTerbit">
+                <input type="email" placeholder="Username" name="tglTerbit">
             </div>
             <div style="padding-bottom: 5px;">
                 <input type="password" placeholder="Judul" name="judulArticle">
