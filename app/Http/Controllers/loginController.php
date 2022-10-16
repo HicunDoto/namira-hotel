@@ -14,6 +14,10 @@ class loginController extends Controller
      *
      * @return Response
      */
+    public function home()
+    {
+        return view('index');
+    }
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\loginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,9 @@ use App\Http\Controllers\adminController;
 */
 
 Route::get('/', [dashboardController::class, 'index']);
+Route::get('/login',[LoginController::class,'home'])->name('login');
+Route::post('/login',[LoginController::class,'login'])->name('post.login');
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 //promo route
 Route::get('/adminnamira', [adminController::class, 'index']);
