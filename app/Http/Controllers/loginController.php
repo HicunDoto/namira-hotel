@@ -20,14 +20,20 @@ class loginController extends Controller
     }
     public function authenticate(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
  
         if (Auth::attempt($credentials)) {
             // Authentication passed...
+            $request->session()->regenerate();
             return redirect()->intended('adminNamira');
-        }else{
-            return redirect('/');
         }
+        return back()->withErrors([
+            'email' => 'email tidak terdaftar',
+        ])->onlyInput('email');
+
     }    
     public function logout (Request $request){
         Auth::logout();
