@@ -18,6 +18,8 @@ class Admin
     {
         if ( ! auth()->user() ){
             return redirect('/login34N4mira')->with('status', 'Mohon Login Terlebih Dahulu!');; 
+        }else{
+            return $next($request);
         }
         // elseif(auth()->user()->level == "admin"){
         //     //dd($request->all());

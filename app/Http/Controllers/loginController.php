@@ -28,7 +28,7 @@ class loginController extends Controller
         if (Auth::attempt($credentials)) {
             // Authentication passed...
             $request->session()->regenerate();
-            return redirect()->intended('adminNamira');
+            return redirect()->intended('adminnamira');
         }
         return back()->withErrors([
             'email' => 'email tidak terdaftar',

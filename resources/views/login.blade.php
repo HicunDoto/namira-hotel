@@ -16,10 +16,10 @@
         @endif
         <div>
             <div style="padding-bottom: 5px;">
-                <input type="email" placeholder="Username" name="tglTerbit">
+                <input type="email" placeholder="Username" name="email">
             </div>
             <div style="padding-bottom: 5px;">
-                <input type="password" placeholder="Judul" name="judulArticle">
+                <input type="password" placeholder="Judul" name="password">
             </div>
             <button type="submit">Submit</button>
         </div>
