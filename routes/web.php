@@ -17,11 +17,11 @@ use App\Http\Controllers\loginController;
 */
 
 Route::get('/', [dashboardController::class, 'index']);
-Route::get('/login',[LoginController::class,'home'])->name('login');
-Route::post('/login',[LoginController::class,'login'])->name('post.login');
-Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+Route::get('/login34N4mira',[loginController::class,'home'])->name('login');
+Route::post('/login34N4mira',[loginController::class,'authenticate'])->name('post.login');
+Route::get('/logout',[loginController::class,'logout'])->name('logout');
 
-//promo route
+//promo route adminnamira
 Route::get('/adminnamira', [adminController::class, 'index']);
 Route::get('/adminnamira/promo', [adminController::class, 'promo']);
 Route::get('/adminnamira/createPromo', [adminController::class, 'createPromo']);
@@ -29,7 +29,7 @@ Route::post('/adminnamira/promo', [adminController::class, 'createStorePromo']);
 Route::post('/adminnamira/promo/{id}', [adminController::class, 'deletePromo']);
 Route::get('/adminnamira/{id}/editPromo', [adminController::class, 'editPromo']);
 Route::put('/adminnamira/{id}', [adminController::class, 'editStorePromo'])->name('update.Promo');
-//article route
+//article route adminnamira
 Route::get('/adminnamira/article', [adminController::class, 'article']);
 Route::get('/adminnamira/createArticle', [adminController::class, 'createArticle']);
 Route::post('/adminnamira/article', [adminController::class, 'createStoreArticle']);

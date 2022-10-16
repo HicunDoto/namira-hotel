@@ -16,7 +16,7 @@ class loginController extends Controller
      */
     public function home()
     {
-        return view('index');
+        return view('login');
     }
     public function authenticate(Request $request)
     {
