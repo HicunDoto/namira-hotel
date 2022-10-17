@@ -14,7 +14,7 @@ class loginController extends Controller
      *
      * @return Response
      */
-    public function home()
+    public function login()
     {
         return view('login');
     }
