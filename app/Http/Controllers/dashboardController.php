@@ -24,6 +24,10 @@ class dashboardController extends Controller
         return view('index',['promos' => $promo, 'articles' => $article, 'contacts' => $contact]);
     }
 
+    public function home()
+    {
+        return view('home');
+    }
     /**
      * Show the form for creating a new resource.
      *
