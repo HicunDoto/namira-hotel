@@ -16,7 +16,7 @@ use App\Http\Controllers\loginController;
 |
 */
 
-Route::get('/', [dashboardController::class, 'index']);
+Route::get('/', [dashboardController::class, 'home']);
 Route::get('/login34N4mira',[loginController::class,'login'])->name('login');
 Route::post('/login34N4mira',[loginController::class,'authenticate'])->name('post.login');
 Route::get('/logout',[loginController::class,'logout'])->name('logout');
