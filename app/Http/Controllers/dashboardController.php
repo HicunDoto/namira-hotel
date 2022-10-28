@@ -36,9 +36,11 @@ class dashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function email()
+    public function email(Request $request)
     {
-      $details = [
+        $title = $request->title;
+        $body = $request->body;
+        $details = [
         'title' => 'Mail from hicundoto.com',
         'body' => 'This is for testing email using smtp'
         ];
