@@ -20,6 +20,7 @@ Route::get('/', [dashboardController::class, 'home']);
 Route::get('/login34N4mira',[loginController::class,'login'])->name('login');
 Route::post('/login34N4mira',[loginController::class,'authenticate'])->name('post.login');
 Route::get('/logout',[loginController::class,'logout'])->name('logout');
+Route::get('/email',[dashboardController::class,'email'])->name('email');
 
 Route::group(['middleware'=>['admin']], function(){
     //promo route adminnamira
