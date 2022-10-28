@@ -43,7 +43,7 @@ class dashboardController extends Controller
         'body' => 'This is for testing email using smtp'
         ];
        
-        \Mail::to('saikulh@gmail.com')->send(new \App\Mail\namiraEmailController($details));
+        \Mail::to('jekrai8@gmail.com')->send(new \App\Mail\namiraEmailController($details));
        
         dd("Email sudah terkirim.");
     }
