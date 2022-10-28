@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 require '../vendor/autoload.php';
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\namiraEmailController;
 use Illuminate\Support\Facades\DB;
 use App\Models\promoDashboard;
 use App\Models\articleDashboard;
@@ -33,6 +35,19 @@ class dashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function email()
+    {
+      $details = [
+        'title' => 'Mail from hicundoto.com',
+        'body' => 'This is for testing email using smtp'
+        ];
+       
+        \Mail::to('saikulh@gmail.com')->send(new \App\Mail\namiraEmailController($details));
+       
+        dd("Email sudah terkirim.");
+    }
+
     public function create()
     {
         //
