@@ -28,7 +28,7 @@ class namiraEmailController extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from hicun.com')
-                    ->view('email');
+        return $this->subject('Mail from ganteng hicun.com')
+                    ->view('dashboard');
     }
 }
