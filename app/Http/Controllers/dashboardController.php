@@ -53,6 +53,7 @@ class dashboardController extends Controller
 
     public function contactUS(Request $request)
     {
+        // dd($request);die;
         $title = $request->title;
         $body = $request->body;
         $subject = $request->subject; 
@@ -63,7 +64,9 @@ class dashboardController extends Controller
             $details = [
             'title' => $title,
             'subject' => $subject,
-            'body' => 'Nama :'.$nama.'Nomer Telepon :'.$phone.'Keterangan :'.$body
+            'nama' => $nama,
+            'telepon' => $phone,
+            'keterangan'=>$body
             ];
             
             $saveContact = contactDashboard::create([
