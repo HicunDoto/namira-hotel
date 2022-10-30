@@ -38,16 +38,17 @@ class dashboardController extends Controller
 
     public function email(Request $request)
     {
-        $title = $request->title;
-        $body = $request->body;
-        $details = [
-        'title' => 'Mail from hicundoto.com',
-        'body' => 'This is for testing email using smtp'
-        ];
+        // $title = $request->title;
+        // $body = $request->body;
+        // $details = [
+        // 'title' => 'Mail from hicundoto.com',
+        // 'body' => 'This is for testing email using smtp'
+        // ];
        
-        \Mail::to('jekrai8@gmail.com')->send(new \App\Mail\namiraEmailController($details));
+        // \Mail::to('jekrai8@gmail.com')->send(new \App\Mail\namiraEmailController($details));
        
-        dd("Email sudah terkirim.");
+        // dd("Email sudah terkirim.");
+        return view('emailForm');
     }
 
     public function contactUS(Request $request)
@@ -65,7 +66,6 @@ class dashboardController extends Controller
             'body' => 'Nama :'.$nama.'Nomer Telepon :'.$phone.'Keterangan :'.$body
             ];
             
-            \Mail::to($email)->send(new \App\Mail\namiraEmailController($details));
             $saveContact = contactDashboard::create([
                 'namaContact' => $nama,
                 'subject' => $subject,
@@ -73,6 +73,7 @@ class dashboardController extends Controller
                 'email' => $email,
                 'keteranganContact' => $body
             ]);
+            \Mail::to($email)->send(new \App\Mail\namiraEmailController($details));
         }
         
        
