@@ -50,6 +50,35 @@ class dashboardController extends Controller
         dd("Email sudah terkirim.");
     }
 
+    public function contactUS(Request $request)
+    {
+        $title = $request->title;
+        $body = $request->body;
+        $subject = $request->subject; 
+        $email = $request->email;
+        $nama = $request->nama;
+        $phone = $request->phone;
+        if ($request != '') {
+            $details = [
+            'title' => $title,
+            'subject' => $subject,
+            'body' => 'Nama :'.$nama.'Nomer Telepon :'.$phone.'Keterangan :'.$body
+            ];
+            
+            \Mail::to($email)->send(new \App\Mail\namiraEmailController($details));
+            $saveContact = contactDashboard::create([
+                'namaContact' => $nama,
+                'subject' => $subject,
+                'no_telp' => $phone,
+                'email' => $email,
+                'keteranganContact' => $body
+            ]);
+        }
+        
+       
+        dd("Email sudah terkirim.");
+    }
+
     public function create()
     {
         //
