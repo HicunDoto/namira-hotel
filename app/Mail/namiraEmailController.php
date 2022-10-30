@@ -19,6 +19,7 @@ class namiraEmailController extends Mailable
     public function __construct($details)
     {
         $this->details = $details;
+        $this->subject($details->subject);
     }
 
     /**
@@ -28,7 +29,6 @@ class namiraEmailController extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from ganteng hicun.com')
-                    ->view('dashboard');
+        return $this->view('email');
     }
 }
