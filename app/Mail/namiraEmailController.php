@@ -11,6 +11,7 @@ class namiraEmailController extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $details;
     /**
      * Create a new message instance.
      *
@@ -19,7 +20,8 @@ class namiraEmailController extends Mailable
     public function __construct($details)
     {
         $this->details = $details;
-        $this->subject($details->subject);
+        // dd($details);die;
+        // $this->subject('Mail from ganteng hicun.com')
     }
 
     /**
@@ -29,6 +31,7 @@ class namiraEmailController extends Mailable
      */
     public function build()
     {
-        return $this->view('email');
+        return $this->subject($this->details['subject'])
+                    ->view('email');
     }
 }
