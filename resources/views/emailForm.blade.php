@@ -8,6 +8,7 @@
 </head>
 <body>
     <form action="{{url('/email')}}" method="post">
+        @csrf
         <input type="text" placeholder="Title" name="title" id="">
         <input type="text" placeholder="Keterangan" name="body" id="">
         <input type="text" placeholder="Nama" name="nama" id="">

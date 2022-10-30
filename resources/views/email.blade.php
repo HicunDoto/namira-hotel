@@ -4,9 +4,11 @@
     <title>Hicundoto.com</title>
 </head>
 <body>
-    <h1>{{ $details['title'] }}</h1>
-    <p>{{ $details['body'] }}</p>
+    <h2>{{ $details['title'] }}</h2>
+    <p>Nama : {{ $details['nama'] }}</p>
+    <p>Nomer Telepon : {{ $details['telepon'] }}</p>
+    <p>Keterangan : {{ $details['keterangan'] }}</p>
    
-    <p>Namira Hotel</p>
+    <h3>Namira Hotel 2022</h3>
 </body>
 </html>
