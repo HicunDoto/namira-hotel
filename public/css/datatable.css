@@ -1,0 +1,85 @@
+.dataTables_length label {
+    display: flex;
+    background-color: #c4dfaa;
+    border-radius: 5px;
+    padding: 5px;
+    width: fit-content;
+    align-items: center;
+}
+.dataTables_length select {
+    margin: 0px 4px;
+    border: 2px solid #73a9ad;
+    border-radius: 4px;
+}
+#tableArtikel_filter,
+#tableMessege_filter {
+    margin-top: 5px;
+}
+#tableArtikel_filter label,
+#tableMessege_filter label {
+    display: flex;
+    background-color: #90c8ac;
+    border-radius: 5px;
+    padding: 5px;
+    width: fit-content;
+    align-items: center;
+}
+
+#tableArtikel_filter input,
+#tableMessege_filter input {
+    border-radius: 4px;
+    width: 500px;
+    padding: 4px;
+    border: solid #73a9ad;
+}
+th,
+td {
+    padding: 4px 8px;
+}
+th {
+    background-color: #73a9ad;
+    color: white;
+    border: 3px solid white !important;
+    border-radius: 8px;
+    text-align: center !important;
+}
+
+td {
+    background-color: #f5f0bb;
+    border: 3px solid white !important;
+    border-radius: 8px;
+}
+
+.display.dataTable {
+    width: 100% !important;
+}
+
+.dataTables_info {
+    border-top: 2px solid #73a9ad;
+}
+
+.dataTables_paginate {
+    display: flex;
+    height: fit-content;
+    justify-content: end;
+    align-items: center;
+}
+
+.dataTables_paginate a {
+    background-color: #90c8ac;
+    margin: 0px 4px;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+}
+
+.dataTables_paginate a:hover {
+    color: #73a9ad !important;
+}
+
+.dataTables_paginate span a {
+    padding-left: 10px;
+    padding-right: 10px;
+}
