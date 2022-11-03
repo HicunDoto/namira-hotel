@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 require '../vendor/autoload.php';
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\namiraEmailController;
 use Illuminate\Support\Facades\DB;
 use App\Models\promoDashboard;
 use App\Models\articleDashboard;
@@ -33,6 +35,54 @@ class dashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function email(Request $request)
+    {
+        // $title = $request->title;
+        // $body = $request->body;
+        // $details = [
+        // 'title' => 'Mail from hicundoto.com',
+        // 'body' => 'This is for testing email using smtp'
+        // ];
+       
+        // \Mail::to('jekrai8@gmail.com')->send(new \App\Mail\namiraEmailController($details));
+       
+        // dd("Email sudah terkirim.");
+        return view('emailForm');
+    }
+
+    public function contactUS(Request $request)
+    {
+        // dd($request);die;
+        $title = $request->title;
+        $body = $request->body;
+        $subject = $request->subject; 
+        $email = $request->email;
+        $nama = $request->nama;
+        $phone = $request->phone;
+        if ($request != '') {
+            $details = [
+            'title' => $title,
+            'subject' => $subject,
+            'nama' => $nama,
+            'telepon' => $phone,
+            'keterangan'=>$body
+            ];
+            
+            $saveContact = contactDashboard::create([
+                'namaContact' => $nama,
+                'subject' => $subject,
+                'no_telp' => $phone,
+                'email' => $email,
+                'keteranganContact' => $body
+            ]);
+            \Mail::to($email)->send(new \App\Mail\namiraEmailController($details));
+        }
+        
+       
+        dd("Email sudah terkirim.");
+    }
+
     public function create()
     {
         //
