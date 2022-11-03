@@ -6,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{asset('css/namira.css')}}">
+    <link rel="stylesheet" href="{{asset('css/datatable.css')}}">
     <link rel="stylesheet" href="{{asset('css/slide.css')}}">
+    <link rel="stylesheet" href="{{asset('css/pagination.css')}}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
     {{-- <link rel="stylesheet" href="{{asset('css/slide.scss')}}"> --}}
 	@include('cdn')
 </head>
@@ -36,19 +41,73 @@
 		<div class="bot-nav"></div>
 	</section>
 </body>
+
 <script>
+var urlArtikel = "https://pokeapi.co/api/v2/pokemon"
+var urlMessege = "https://pokeapi.co/api/v2/ability"
+var xhtml = new XMLHttpRequest();
+function artikelFunc(){
+	xhtml.open("GET",urlArtikel,true);
+	xhtml.send();
+	xhtml.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			var data = JSON.parse(this.responseText);
+			// console.log(data)
+			$('#tableArtikel').DataTable({
+			"data" : data.results,
+			"columns": [
+				{ data: 'name' },
+				{ data: 'url' },
+			],
+		});
+		}
+	}
+}
+function messegeFunc(){
+	xhtml.open("GET",urlMessege,true);
+	xhtml.send();
+	xhtml.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			var data = JSON.parse(this.responseText);
+			// console.log(data)
+			$('#tableMessege').DataTable({
+			"data" : data.results,
+			"columns": [
+				{ data: 'name' },
+				{ data: 'url' },
+			],
+		});
+		}
+	}
+}
+
+if($('.articleDash').hasClass('a-href-aktif')){
+	artikelFunc()
+	console.log('artikelfind')
+}
+if($('.messegeDash').hasClass('a-href-aktif')){
+	messegeFunc()
+	console.log('messegefind')
+}
+
+
 $(document).ready(function(){
 	$(this).scrollTop(0);
 	$(window).scroll(function(){
-	let scroll = $(window).scrollTop();
-	if (scroll > 10) {
-		$(".navbar").css({"background" : "rgba(32, 32, 32, 1)","border-bottom":"2px solid gold"});
-		$(".navbar").stop().animate({"height" : "70px"},100); 
-	}
-	else{
-		$(".navbar").css({"background" : "rgba(32, 32, 32, 0)","border-bottom":"unset",});  	
-		$(".navbar").stop().animate({"height" : "150px"},100);  	
-	}
+		let scroll = $(window).scrollTop();
+		if (scroll > 10) {
+			$(".navbar").css({"background" : "rgba(32, 32, 32, 1)","border-bottom":"2px solid gold"});
+			$(".navbar").stop().animate({"height" : "70px"},100); 
+		}
+		else{
+			if($('body').find('.detect-kontak').length){
+				$(".navbar").css({"background" : "rgba(32, 32, 32, 1)","border-bottom":"unset",});  	
+				$(".navbar").stop().animate({"height" : "150px"},100);  
+			}else{
+				$(".navbar").css({"background" : "rgba(32, 32, 32, 0)","border-bottom":"unset",});  	
+				$(".navbar").stop().animate({"height" : "150px"},100);  	
+			}
+		}
 	})
 
 	$('#flexCheckChecked').on('click', function(){
@@ -67,34 +126,118 @@ $(document).ready(function(){
 	$('.loop-promo').on('mouseleave',function(){
 		$(this).find('.loop-menu').fadeOut()
 	})
+
+	$(function(){
+		var container = $('.barbar');
+		var isiisi = $('.isiberita');
+		var ee = 'loding';
+
+		container.pagination({
+			dataSource: 'https://api.flickr.com/services/feeds/photos_public.gne?tags=cat%20orange&tagmode=any&format=json&jsoncallback=?',
+			locator: 'items',
+			totalNumber : 120,
+			pageSize : 10,
+			autoHidePrevious: true,
+			autoHideNext: true,
+			ajax: {
+				beforeSend: function() {
+					isiisi.html('Loading data from flickr.com ...');
+				}
+			},
+			
+			callback: function(data, pagination) {
+				var html = template(data);
+				isiisi.html(html);
+			},
+		});
+	})
+
+	function template(data) {
+		var html = '<ul>';
+		$.each(data, function(index, item){
+			html += '<li>'+ item.description +'</li>';
+		});
+		html += '</ul>';
+		return html;
+	}
+	
+	
+	
 })
 if($('body').find('.kotak-login').length){
 	$('.bot-nav').addClass('d-none');
 	console.log('huihuhu')
 }
-if($('body').find('.dashboard').length){
+if($('body').find('.dashboard').length || $('body').find('.create-promo').length || $('body').find('.buat-artikel').length ){
 	$('.bot-nav').addClass('d-none');
 	$('.navbar').addClass('d-none');
 	console.log('huihuhu')
 }
-$('.a-h1').on('click',function(){
-	$(this).addClass('a-href-aktif').removeClass('a-href')
-	$('.a-h2, .a-h3').removeClass('a-href-aktif').addClass('a-href')
-	$('#promo').removeClass('d-none').addClass('d-flex')
-	$('#article, #kontak').removeClass('d-flex').addClass('d-none')
-})
-$('.a-h2').on('click',function(){
-	$(this).addClass('a-href-aktif').removeClass('a-href')
-	$('.a-h1, .a-h3').removeClass('a-href-aktif').addClass('a-href')
-	$('#article').removeClass('d-none').addClass('d-flex')
-	$('#promo, #kontak').removeClass('d-flex').addClass('d-none')
-})
-$('.a-h3').on('click',function(){
-	$(this).addClass('a-href-aktif').removeClass('a-href')
-	$('.a-h2, .a-h1').removeClass('a-href-aktif').addClass('a-href')
-	$('#kontak').removeClass('d-none').addClass('d-flex')
-	$('#promo, #article').removeClass('d-flex').addClass('d-none')
-})
+
+if($('body').find('.create-promo').length){
+	console.log('buat-promo')
+	imgInp.onchange = evt => {
+	  const [file] = imgInp.files
+	  if (file) {
+		imgimg.src = URL.createObjectURL(file)
+	  }
+	}
+}
+
+if($('body').find('.detect-kontak').length){
+	if (scroll > 10) {
+		$(".navbar").css({"background" : "rgba(32, 32, 32, 1)","border-bottom":"2px solid gold"});
+		$(".navbar").stop().animate({"height" : "70px"},100); 
+	}
+	else{
+		$(".navbar").css({"background" : "rgba(32, 32, 32, 1)","border-bottom":"unset",});  	
+		$(".navbar").stop().animate({"height" : "150px"},100);  	
+	}
+}
+
+if($('body').find('.buat-artikel').length){
+	console.log('buat-artikel')
+	imgAr.onchange = evt => {
+	  const [file] = imgAr.files
+	  if (file) {
+		imgimgAr.src = URL.createObjectURL(file)
+	  }
+	}
+
+	var quill = new Quill('#quill', {
+		theme: 'snow',
+		modules: {
+		toolbar: [
+			[{ header: [1, 2, 3, 4, 5, 6, false] }],
+			[{ font: [] }],
+			["bold", "italic", "underline"],
+			["link", "blockquote", "code-block", "image"],
+			[{ list: "ordered" }, { list: "bullet" }],
+			[{ script: "sub" }, { script: "super" }],
+			[{ color: [] }, { background: [] }],
+		]
+		},
+	});
+	var form = $('form');
+	form.onsubmit = function() {
+	// Populate hidden form on submit
+	var about = $('inputQuill');
+	about.value = JSON.stringify(quill.getContents());
+	
+	console.log("Submitted", $(form).serialize(), $(form).serializeArray());
+	
+	// No back end to actually submit to!
+	alert('Open the console to see the submit data!')
+	return false;
+	};
+	
+	$('.submit-btn').on('click', function(){
+		window.location.href="http://127.0.0.1:8000/articleDash";
+		console.log('lllll')
+	})
+
+}
 </script>
 <script src="../js/slide.js"></script>
+<script src="../js/pagination.js"></script>
 </html>

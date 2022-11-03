@@ -1,19 +1,51 @@
 @extends('head')
+@section('namira')
+<style type="text/css">
+    ul, li {
+        list-style: none;
+    }
+
+    #wrapper {
+        width: 900px;
+        margin: 20px auto;
+    }
+
+    .data-container {
+        margin-top: 20px;
+    }
+
+    .data-container ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .data-container li {
+        margin-bottom: 5px;
+        padding: 5px 10px;
+        background: #eee;
+        color: #666;
+    }
+</style>
 <div class="dashboard">
     <div class="menu-dashboard">
         <div class="anak-dashboard">
-            <a href="#promo" class="d-flex">
-                <div class="a-href a-h1 a-href-aktif">
+            <a href="dashboard" class="d-flex">
+                <div class="dashboard a-href a-h1 a-href-aktif">
                     <i class='bx bxs-purchase-tag'></i>
                 </div>
             </a>
-            <a href="#article" class="d-flex">
+            <a href="articleDash" class="d-flex">
                 <div class="a-href a-h2">
                      <i class='bx bxs-news'></i>
                 </div></a>
-            <a href="#kontak" class="d-flex">
+            <a href="messegeDash" class="d-flex">
                 <div class="a-href a-h3">
                      <i class='bx bxs-message-dots'></i>
+                </div></a>
+            </a>
+            <a href="#Logout" class="d-flex">
+                <div class="a-href bg-success">
+                     <i class='bx bx-log-out'></i>
                 </div></a>
             </a>
         </div>
@@ -59,7 +91,7 @@
             </div>
         </div>
         <div class="input-promo d-flex flex-column ">
-            <a href=""><button class="btn btn-primary my-4">Upload
+            <a href="createPromo"><button class="btn btn-primary my-4">Upload
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="M11 15h2V9h3l-4-5-4 5h3z"></path><path d="M20 18H4v-7H2v7c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-7h-2v7z"></path></svg></button></a>
             <div class="isi-promo">
                 {{-- loop  --}}
@@ -68,7 +100,7 @@
                     <div class="loop-menu">
                         <h2>Name1</h2>
                         <div class="d-flex" style="gap:10px">
-                            <a href="">
+                            <a href="editPromo">
                                 <button class="btn btn-dark">
                                     <i class='bx bxs-edit'></i>
                                 </button>
@@ -86,7 +118,7 @@
                     <div class="loop-menu">
                         <h2>Name2</h2>
                         <div class="d-flex" style="gap:10px">
-                            <a href="">
+                            <a href="editPromo">
                                 <button class="btn btn-dark">
                                     <i class='bx bxs-edit'></i>
                                 </button>
@@ -104,7 +136,7 @@
                     <div class="loop-menu">
                         <h2>Name3</h2>
                         <div class="d-flex" style="gap:10px">
-                            <a href="">
+                            <a href="editPromo">
                                 <button class="btn btn-dark">
                                     <i class='bx bxs-edit'></i>
                                 </button>
@@ -122,7 +154,7 @@
                     <div class="loop-menu">
                         <h2>Name2</h2>
                         <div class="d-flex" style="gap:10px">
-                            <a href="">
+                            <a href="editPromo">
                                 <button class="btn btn-dark">
                                     <i class='bx bxs-edit'></i>
                                 </button>
@@ -140,7 +172,7 @@
                     <div class="loop-menu">
                         <h2>Name3</h2>
                         <div class="d-flex" style="gap:10px">
-                            <a href="">
+                            <a href="editPromo">
                                 <button class="btn btn-dark">
                                     <i class='bx bxs-edit'></i>
                                 </button>
@@ -157,10 +189,5 @@
             </div>
         </div>
     </div>
-    <div class="article justify-content-center d-none" id="article">
-        <h1>Artikel</h1>
-    </div>
-    <div class="kontak justify-content-center d-none" id="kontak">
-        <h1>Pesan</h1>
-    </div>
 </div>
+@endsection
