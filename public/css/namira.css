@@ -342,11 +342,12 @@ p.card-text-top {
 .dashboard,
 .promo,
 .article,
-.kontak {
+.kontak,
+.create-promo {
     width: 100%;
     height: 100vh;
     overflow-x: hidden;
-    background-color: #8cc0de;
+    background-color: white;
 }
 
 .menu-dashboard {
@@ -382,6 +383,8 @@ p.card-text-top {
     border: 3px solid #202020;
     color: #202020;
     transition: 0.3s;
+    line-height: 16px;
+    height: fit-content !important;
 }
 .a-href:hover {
     border: 3px solid #202020;
@@ -400,15 +403,15 @@ p.card-text-top {
 #promo h1,
 #article h1,
 #kontak h1 {
-    margin-top: 150px;
+    margin-top: 120px;
 }
 .input-promo {
     margin: 60px 0px;
     width: 70%;
     /* border: 3px solid #202020; */
-    background-color: #354259;
+    background-color: #73a9ad;
     border-radius: 20px;
-    padding: 10px;
+    padding: 20px;
 }
 .input-promo a {
     height: fit-content;
@@ -416,14 +419,15 @@ p.card-text-top {
 }
 .isi-promo {
     /* border: 3px solid #202020; */
-    background-color: #354259;
-    padding: 8px;
+    background-color: #73a9ad;
     gap: 10px;
     display: flex;
     flex-wrap: wrap;
     max-height: 800px;
     overflow-y: auto;
     width: 100%;
+    border-radius: 10px;
+    padding: 5px;
 }
 .loop-promo {
     height: 200px;
@@ -454,4 +458,112 @@ p.card-text-top {
 .loop-menu button {
     font-size: 40px;
 }
+
+.create-promo form {
+    background-color: #73a9ad;
+    border-radius: 10px;
+    width: 500px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.berita {
+    width: 80%;
+    height: 900pxs;
+}
+
+#article {
+    padding: 0px 22px;
+    padding-bottom: 30px;
+}
+
+.create-artikel {
+    background-color: #73a9ad !important;
+    margin-bottom: 10px;
+}
+.create-artikel:hover {
+    background-color: #90c8ac !important;
+}
+.custom-artikel {
+    background-color: #d0fbe6;
+    border-radius: 20px;
+    padding: 20px;
+    height: 1300px;
+}
+.ql-snow {
+    border: 1px solid black !important;
+}
+.artikel-menu {
+    height: 500px;
+    background-image: url(../gambar/article.jpg) !important;
+    background-size: cover;
+    object-fit: cover;
+    background-position: center;
+    padding: 50px;
+}
+.artikel-menu h1 {
+    color: white;
+    font-size: 110px;
+    font-weight: 200;
+    margin-top: 200px;
+    z-index: 2;
+    position: relative;
+}
+.artikel-menu h2 {
+    color: white;
+    font-size: 20px;
+    letter-spacing: 5px;
+    z-index: 3;
+    position: relative;
+}
+
+.isi-artikel-menu {
+    padding: 50px 100px;
+}
+
+.isi-artikel-menu .card h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.kontak-menu {
+    height: 1000px;
+}
+.kontak-menu form {
+    padding-top: 200px;
+}
+.k-left,
+.k-right {
+    width: 40%;
+}
+.k-left h1 {
+    color: #e9b94c;
+    font-size: 100px;
+}
+
+.k-right input,
+.k-right textarea {
+    border: 2px solid gold !important;
+}
 /* ========================================= */
+@media only screen and (max-width: 1366px) {
+    .navbar {
+        justify-content: space-evenly !important;
+    }
+    .nav-left,
+    .nav-mid,
+    .isi-nav {
+        width: auto !important;
+    }
+    .nav-mid .isi-nav div {
+        margin: 0px !important;
+    }
+    .nav-mid .isi-nav {
+        gap: 5px;
+    }
+}
