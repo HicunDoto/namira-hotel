@@ -1,27 +1,52 @@
 @extends('head')
-<form action="">
-    <input type="text" id="email" name="email" placeholder="email">
-    <input type="text" id="subjek" name="subjek" placeholder="subjek">
-    <input type="text" id="body" name="isi" id="" placeholder="isi">
-    <input type="button" value="Send Email" onclick="sendEmail()">
-</form>
-<input type="button" value="Send Email" onclick="sendEmail()">
-<script src="{{asset('js/smtp.js')}}"></script>
-<script>
-    function sendEmail() {
-        Email.send({
-            Host : "smtp.yourisp.com",
-            Username : "username",
-            Password : "password",
-            To : 'them@website.com',
-            From : "you@isp.com",
-            Subject : "This is the subject",
-            Body : "And this is the body"
-        }).then(
-            message => alert(message)
-        );
-    }
-    // $('button').on('click',function(){
-    //     kirimEmail
-    // })
-</script>
+@section('namira')
+<div class="kontak-menu detect-kontak d-flex justify-content-center align-content-center">
+    <div class="k-left d-flex justify-content-center align-content-center flex-column p-4">
+        <h1>Contact US</h1>
+        <h2>HOW WE CAN HELP YOU</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur nisi ducimus nostrum alias fugiat incidunt, voluptas consectetur. Itaque voluptatibus ducimus commodi tempore ea, cum voluptate, quaerat pariatur quos nam quis alias! Dicta atque doloremque velit possimus iure aperiam repellat beatae!</p>
+        <h2>OUR MEDIA</h2>
+        <p>
+            Namirahotelindonesia ( Instagram ) <br>
+            Namira Hotel ( Facebook ) <br>
+            Namirahotel@Gmail.Com ( Email ) <br>
+            0829372917293 (Support To Whatsapp ) <br>
+        </p>
+        <br>
+        <p>Our Location : Jl . Surabaya Barat No 25 B99, Surabaya, Jawa Timur, Indonesia</p>
+    </div>
+    <div class="k-right d-flex flex-column p-5">
+        <form action="">
+            <div class="body-mess rounded-5 shadow p-4">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Achmad" name="email">
+                    <label for="floatingInput">Nama</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="floatingInput" placeholder="0812345678" name="telepon">
+                    <label for="floatingInput">Telepon</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Subject" name="subjek">
+                    <label for="floatingInput">Subjek</label>
+                </div>
+                <div class="form-floating">
+                    <textarea class="form-control mb-3" placeholder="Isi pesan disini..." id="floatingTextarea" style="height:100px" name="pesan"></textarea>
+                    <label for="floatingTextarea">Isi Pesan</label>
+                </div>
+                <button type="submit" class="btn btn-warning w-100">KIRIM</button>
+            </div>
+        </form>
+    </div>
+    <form action="" class="d-none">
+        <input type="text" id="email" name="email" placeholder="email">
+        <input type="text" id="subjek" name="subjek" placeholder="subjek">
+        <input type="text" id="body" name="isi" id="" placeholder="isi">
+        <button type="submit">Kirim</button>
+    </form>
+</div>
+@endsection
