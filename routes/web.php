@@ -40,3 +40,58 @@ Route::group(['middleware'=>['admin']], function(){
     Route::get('/adminnamira/{id}/editArticle', [adminController::class, 'editArticle']);
     Route::put('/adminnamira/{id}', [adminController::class, 'editStoreArticle'])->name('update.Article');
 });
+
+Route::get('/home', function () {
+    return view('home');
+});
+
+Route::get('/rooms', function () {
+    return view('rooms');
+});
+
+Route::get('/functionhall', function () {
+    return view('functionhall');
+});
+
+Route::get('/foodresto', function () {
+    return view('foodresto');
+});
+
+Route::get('/articles', function () {
+    return view('article');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/namira-admin', function () {
+    return view('login-R');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::get('/articleDash', function () {
+    return view('articleDash');
+});
+
+Route::get('/messegeDash', function () {
+    return view('messegeDash');
+});
+
+Route::get('/createPromo', function () {
+    return view('createPromo');
+});
+Route::get('/editPromo', function () {
+    return view('editPromo');
+});
+
+Route::get('/cekcek', function () {
+    return view('cekcek');
+});
+
+Route::get('/createArticle', function () {
+    return view('createArticle');
+});
