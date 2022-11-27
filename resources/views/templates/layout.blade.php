@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Frontendfunn - Bootstrap 5 Admin Dashboard Template</title>
+    <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap5.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/style.css')}}" />
+    <title>Admin Namira Hotel</title>
   </head>
   <body>
     <!-- top navigation bar -->
@@ -29,7 +29,7 @@
         <a
           class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold"
           href="#"
-          >Frontendfunn</a
+          >Namira Hotel</a
         >
         <button
           class="navbar-toggler"
@@ -68,11 +68,11 @@
                 <i class="bi bi-person-fill"></i>
               </a>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                {{-- <li><a class="dropdown-item" href="#">Another action</a></li>
                 <li>
                   <a class="dropdown-item" href="#">Something else here</a>
-                </li>
+                </li> --}}
               </ul>
             </li>
           </ul>
@@ -165,11 +165,11 @@
     <main class="mt-5 pt-3">
         @yield('container')
     </main>
-    <script src="./js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
-    <script src="./js/jquery-3.5.1.js"></script>
-    <script src="./js/jquery.dataTables.min.js"></script>
-    <script src="./js/dataTables.bootstrap5.min.js"></script>
-    <script src="./js/script.js"></script>
+    <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
+    <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('js/dataTables.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
   </body>
 </html>
