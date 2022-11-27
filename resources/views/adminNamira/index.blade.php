@@ -1,4 +1,8 @@
-<html>
+@extends('templates.layout')
+
+@section('title','Dashboard')
+
+@section('container')
     <div id="promo">
         <h3>PROMO</h3>
         @foreach ($promos as $promo)
@@ -17,4 +21,4 @@
             Hello, {{ $contact->namaContact }} - {{ $contact->subject }} - {{ $contact->no_telp }} - {{ $contact->email }} - {{ $contact->keteranganContact }} <br />
         @endforeach
     </div>
-</html>
+@endsection
