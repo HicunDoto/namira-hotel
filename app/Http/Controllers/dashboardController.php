@@ -48,7 +48,7 @@ class dashboardController extends Controller
         // \Mail::to('jekrai8@gmail.com')->send(new \App\Mail\namiraEmailController($details));
        
         // dd("Email sudah terkirim.");
-        return view('emailForm');
+        return view('contact');
     }
 
     public function contactUS(Request $request)
@@ -78,9 +78,9 @@ class dashboardController extends Controller
             ]);
             \Mail::to($email)->send(new \App\Mail\namiraEmailController($details));
         }
-        
        
-        dd("Email sudah terkirim.");
+        return redirect('/contact')
+        ->with('success','Email berhasil terkirim');
     }
 
     public function create()

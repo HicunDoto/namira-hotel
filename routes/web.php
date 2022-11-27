@@ -20,8 +20,8 @@ Route::get('/', [dashboardController::class, 'home']);
 Route::get('/login34N4mira',[loginController::class,'login'])->name('login');
 Route::post('/login34N4mira',[loginController::class,'authenticate'])->name('post.login');
 Route::get('/logout',[loginController::class,'logout'])->name('logout');
-Route::get('/email',[dashboardController::class,'email'])->name('email');
-Route::post('/email',[dashboardController::class,'contactUS'])->name('sendEmail');
+Route::get('/contact',[dashboardController::class,'email'])->name('email');
+Route::post('/contact',[dashboardController::class,'contactUS'])->name('sendEmail');
 
 Route::group(['middleware'=>['admin']], function(){
     //promo route adminnamira
@@ -59,10 +59,6 @@ Route::get('/foodresto', function () {
 
 Route::get('/articles', function () {
     return view('article');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
 });
 
 Route::get('/namira-admin', function () {
